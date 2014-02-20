@@ -1,0 +1,64 @@
+Send and Get Data through Jquery with Ajax But Cause Problem .
+
+Any Body Here You can Solve this Issue ???
+
+
+AJaxResponseSend .html 
+====================================================
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript" 
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script>
+            $(document).ready(function(){
+                $("#Check").click(function(){
+                    var username = $('#username').val();
+                    var pass = $('#pass').val();
+                    $("#Result").load('AjaxResponseReceive.php',
+                    {"name":username,"pass":pass } ,$.get("AjaxResponseReceive.php",function(data,status){
+                        alert("Data: " + data + "\nStatus: " + status);
+                    }),"JSON");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <input type="text" id="username" name="Username"  />
+        <input type="password" id="pass" name="pass" />
+        <input type="button" name="submit" value="SUBMIT Value" id="Check"/>
+        <div id="Result"></div>
+    </body>
+</html>
+===================================================================================================
+AjaxResponseReceive.php
+===================================================================================================
+<?php
+$username = $_POST['name'];
+$pass     = $_POST['pass'];
+
+$par = array(
+    "username"=> $username,
+     "pass"=>$pass
+);
+
+echo json_encode($par);
+
+ 
+/* $parameters = array(
+  "day",
+  "month",
+  "year"
+);
+$par['day'] = "day";
+$par['month'] = "month";
+$par['year'] = "year";
+
+$convertedArray = json_encode($par);
+echo $convertedArray;
+*/
+?>
+
+
